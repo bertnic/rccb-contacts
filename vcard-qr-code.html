@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicola Bertellini - Digital Card</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Rotary Brand Center: Azure, Royal Blue, Gold */
+        :root {
+            --rotary-azure: #0067C8;
+            --rotary-royal-blue: #17458F;
+            --rotary-sky-blue: #00A2E0;
+            --rotary-gold: #F7A81B;
+            --rotary-powder-blue: #B9D9EB;
+            --rotary-charcoal: #54565A;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        .card-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(23, 69, 143, 0.12);
+            position: relative;
+            padding-bottom: 30px;
+        }
+
+        /* Banner di sfondo superiore */
+        .banner {
+            height: 140px;
+            background: linear-gradient(135deg, var(--rotary-sky-blue) 0%, var(--rotary-azure) 45%, var(--rotary-royal-blue) 100%);
+            position: relative;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 0;
+        }
+
+        .logo {
+            height: 48px;
+            width: auto;
+            max-width: 160px;
+            object-fit: contain;
+            object-position: left center;
+            filter: drop-shadow(0 1px 3px rgba(0,0,0,0.2));
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .btn-share {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            color: var(--rotary-royal-blue);
+        }
+
+        .btn-share .material-symbols-outlined {
+            font-size: 20px;
+        }
+
+        .btn-add {
+            background-color: var(--rotary-gold);
+            color: var(--rotary-royal-blue);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Profilo centrale */
+        .profile-section {
+            text-align: center;
+            margin-top: -55px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            background: #eee;
+        }
+
+        .profile-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-top: 12px;
+        }
+
+        .profile-subtitle {
+            font-size: 14px;
+            color: #666666;
+            margin-top: 4px;
+            margin-bottom: 24px;
+        }
+
+        /* Sezioni Dati (Accordie/Box) */
+        .info-group {
+            background-color: #f4f5f9;
+            margin: 0 16px 12px 16px;
+            border-radius: 16px;
+            padding: 16px;
+            position: relative;
+            z-index: 0;
+        }
+
+        .group-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: #2c2c2c;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .icon-box {
+            width: 36px;
+            height: 36px;
+            background: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        .icon-box .material-symbols-outlined {
+            font-size: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 12px;
+            padding-left: 4px;
+        }
+
+        .item-icon {
+            width: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .item-icon .material-symbols-outlined {
+            font-size: 20px;
+        }
+
+        .item-details label {
+            display: block;
+            font-size: 11px;
+            color: #888888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .item-details a, .item-details span {
+            font-size: 14px;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .arrow-icon {
+            margin-left: auto;
+            color: #666;
+            display: flex;
+            align-items: center;
+        }
+
+        .arrow-icon .material-symbols-outlined {
+            font-size: 22px;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <!-- Banner e Bottoni Superiori -->
+        <div class="banner">
+            <img class="logo" src="logo.png" alt="Logo" onerror="this.style.display='none'">
+            <div class="header-actions">
+                <button class="btn-share" onclick="shareCard()" aria-label="Condividi">
+                    <span class="material-symbols-outlined">share</span>
+                </button>
+                <button class="btn-add" onclick="downloadVCard()">Add contact</button>
+            </div>
+        </div>
+
+        <!-- Profilo -->
+        <div class="profile-section">
+            <img src="foto.jpg" alt="Nicola Bertellini" class="avatar">
+            <h1 class="profile-name">Nicola Bertellini</h1>
+            <p class="profile-subtitle">presidente 2026-2028</p>
+        </div>
+
+        <!-- Sezione Contatti -->
+        <div class="info-group">
+            <div class="group-header">
+                <div class="icon-box">
+                    <span class="material-symbols-outlined">call</span>
+                </div>
+                <span>Contact</span>
+                <span class="arrow-icon"><span class="material-symbols-outlined">expand_less</span></span>
+            </div>
+            
+            <div class="info-item">
+                <div class="item-icon"><span class="material-symbols-outlined">smartphone</span></div>
+                <div class="item-details">
+                    <label>Mobile</label>
+                    <a href="tel:+393271267453">+393271267453</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione Club -->
+        <div class="info-group">
+            <div class="group-header">
+                <div class="icon-box">
+                    <span class="material-symbols-outlined">groups</span>
+                </div>
+                <span>Club</span>
+                <span class="arrow-icon"><span class="material-symbols-outlined">expand_less</span></span>
+            </div>
+
+            <div class="info-item">
+                <div class="item-icon"><span class="material-symbols-outlined">business</span></div>
+                <div class="item-details">
+                    <span>Colli Briantei</span>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="item-icon"><span class="material-symbols-outlined">mail</span></div>
+                <div class="item-details">
+                    <label>Email</label>
+                    <a href="mailto:rc.collibriantei@rotary2042.it">rc.collibriantei@rotary2042.it</a>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="item-icon"><span class="material-symbols-outlined">public</span></div>
+                <div class="item-details">
+                    <label>Website</label>
+                    <a href="https://rotarycollibriantei.it" target="_blank">https://rotarycollibriantei.it</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script JavaScript per il salvataggio automatico vCard -->
+    <script>
+        function downloadVCard() {
+            // Contenuto dinamico della vCard
+            const vcardData = 
+`BEGIN:VCARD
+VERSION:3.0
+N:Bertellini;Nicola;;;
+FN:Nicola Bertellini
+ORG:Rotary Club Colli Briantei
+TITLE:Presidente 2026-2028
+TEL;TYPE=CELL,VOICE:+393271267453
+EMAIL;TYPE=INTERNET:rc.collibriantei@rotary2042.it
+URL:https://rotarycollibriantei.it
+END:VCARD`;
+
+            // Creazione del blob per forzare il download indipendentemente dal browser/OS
+            const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'Nicola_Bertellini.vcf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Funzione opzionale per condividere la pagina tramite API nativa del telefono
+        function shareCard() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Nicola Bertellini - Contact Card',
+                    url: window.location.href
+                });
+            } else {
+                alert("Copia il link di questa pagina per condividerla!");
+            }
+        }
+    </script>
+</body>
+</html>
